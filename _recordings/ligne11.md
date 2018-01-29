@@ -1,5 +1,5 @@
 ---
-title: 	Ⓜ11 (Châtelet - Mairie des Lilas - Belleville)
+title: 	Ⓜ11 (Châtelet - Mairie des Lilas)
 category: metro
 status: endangered
 duration: 26"
