@@ -297,6 +297,16 @@ a:focus {
     }
 }
 
+.emphasis {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    border: 1px solid #cc6666;
+    color: #cc6666;
+    background-color: transparent;
+
+}
+
 .btn {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;

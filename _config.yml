@@ -1,9 +1,9 @@
 # Site settings
-title: Grayscale
-email: your-email@domain.com
-url: https://jekyll-themes.gitlab.io
+title: Sounds of Paris
+email: arthur.leonard.gilly@gmail.com
+url: https://soundsof.paris
 baseurl: ""
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+description: "A repository of audio landscapes from the City of Light."
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
@@ -11,7 +11,7 @@ color:
   links: '#219ab3'
 
 # Footer settings
-footer: Your Website
+footer: Arthur Gilly
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
