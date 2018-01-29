@@ -4,19 +4,28 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Markets</h2>
 
-                <span class="emphasis">endangered sound</span>
-                <span class="btn btn-lg">Bird Market, Quai de la Megisserie (0:34)</span>
+                
+                
 
-                <div class="small" style="text-align: justify;width:50%;margin:0 auto;">The Bird Market at Quai de la Megisserie has been an institution of Parisian life for over 200 years. Every Sunday, passers by can listen to, pet and buy exotic and farm bird species. Like many markets, it is now being threatened by decreasing public interest and aesthetic sanitation from the Mayor's office. <br><br></div>
-                <audio id="megisserie" src="{{ site.baseurl }}/assets/27.01.18.Quai_de_la_Megisserie_low.mp3" type="audio/mp3" preload=
+                {% for audio in site.recordings %}
+                {% if audio.category == "market" %}
+                {% if audio.status == "endangered" %}
+                    <span class="emphasis">endangered sound</span>
+                {% endif %}
+                    <span class="btn btn-lg">{{ audio.title }} ({{ audio.duration }})</span>
+                <div class="small" style="text-align: justify;width:50%;margin:0 auto;">{{ audio.description }} <br><br></div>
+                <audio id="{{ audio.iden }}" src="{{ site.baseurl }}/assets/{{ audio.filename }}_low.mp3" type="audio/mp3" preload=
                 "metadata"></audio>
                 <ul class="list-inline banner-social-buttons">
                 <li>
-                <button onclick="document.getElementById('megisserie').play()" class="btn btn-default btn-lg">&#9658;</button>
+                <button onclick="document.getElementById('{{ audio.iden }}').play()" class="btn btn-default btn-lg">&#9658;</button>
                 </li>
-                <li><button onclick="document.getElementById('megisserie').pause()" class="btn btn-default btn-lg">&#10074;&#10074;</button></li>
-                <li><button onclick="document.getElementById('megisserie').load()" class="btn btn-default btn-lg">&#8634;</button></li>
-                <li><a href="{{ site.baseurl }}/assets/27.01.18.Quai_de_la_Megisserie.mp3" download="27.01.18.Quai_de_la_Megisserie.mp3" class="btn btn-default btn-lg">download</a></li>
+                <li><button onclick="document.getElementById('{{ audio.iden }}').pause()" class="btn btn-default btn-lg">&#10074;&#10074;</button></li>
+                <li><button onclick="document.getElementById('{{ audio.iden }}').load()" class="btn btn-default btn-lg">&#8634;</button></li>
+                <li><a href="{{ site.baseurl }}/assets/{{ audio.filename }}.mp3" download="{{ audio.filename }}.mp3" class="btn btn-default btn-lg">download</a></li>
+                <br><br>
+                {% endif %}
+                {% endfor %}
 
 <!--                 <p><a href="mailto:{{ site.email }}">{{ site.email }}</a>
                 </p>
