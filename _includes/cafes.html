@@ -1,0 +1,30 @@
+    <!-- Download Section -->
+    <section id="cafes" class="container cafes-section text-center">
+        <div class="row">
+
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Cafés</h2>
+
+                {% for audio in site.recordings %}
+                {% if audio.category == "cafe" %}
+                {% if audio.status == "endangered" %}
+                    <span class="emphasis">endangered sound</span>
+                {% endif %}
+                    <span class="btn btn-lg">{{ audio.title }} ({{ audio.duration }})</span>
+                <div class="small" style="text-align: justify;width:50%;margin:0 auto;">{{ audio.description }} <br><br></div>
+                <audio id="{{ audio.iden }}" src="{{ site.baseurl }}/assets/{{ audio.filename }}_low.mp3" type="audio/mp3" preload=
+                "metadata"></audio>
+                <ul class="list-inline banner-social-buttons">
+                <li>
+                <button onclick="document.getElementById('{{ audio.iden }}').play()" class="btn btn-default btn-lg">&#9658;</button>
+                </li>
+                <li><button onclick="document.getElementById('{{ audio.iden }}').pause()" class="btn btn-default btn-lg">&#10074;&#10074;</button></li>
+                <li><button onclick="document.getElementById('{{ audio.iden }}').load()" class="btn btn-default btn-lg">&#8634;</button></li>
+                <li><a href="{{ site.baseurl }}/assets/{{ audio.filename }}.mp3" download="{{ audio.filename }}.mp3" class="btn btn-default btn-lg">download</a></li>
+                <br><br>
+                {% endif %}
+                {% endfor %}
+
+                </div>
+        </div>
+    </section>
