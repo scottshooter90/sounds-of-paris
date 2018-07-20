@@ -1,0 +1,15 @@
+{
+  "name": "Sounds of Paris",
+  "version": "0.1.0",
+  "description": "Audio landmarks from the City of Lights",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottshooter90/soundsofparis.git"
+  },
+  "author": "Arthur Gilly & Scott Shooter",
+  "bugs": {
+    "url": "https://github.com/scottshooter90/soundsofparis/issues"
+  },
+  "homepage": "https://github.com/scottshooter90/soundsofparis#readme"
+}
