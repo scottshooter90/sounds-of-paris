@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => (
+const App = (
 	<React.Fragment>
 		React is working
 	</React.Fragment>
