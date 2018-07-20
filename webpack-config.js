@@ -25,10 +25,6 @@ module.exports = {
 					],
 					'plugins': ["transform-class-properties"]
 				}
-			},
-			{
-				test: /\.png$/,
-				loader: 'url-loader'
 			}
 		]
 	}
