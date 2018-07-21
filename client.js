@@ -7,10 +7,13 @@ const config = {
 };
 
 const bodyStyle = `
-	font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: Lora, "Helvetica Neue", Helvetica, Arial, sans-serif
 `;
 
 class BackgroundImage extends React.Component {
+	static defaultProps = {
+		src: ''
+	};
 	divStyle = {
 		backgroundImage: 'url("'+this.props.src+'")',
 		height: '100%',
@@ -20,10 +23,8 @@ class BackgroundImage extends React.Component {
 	}
 	render () {
 		return (
-			<React.Fragment>
-				<div style={this.divStyle}>
-				</div>
-			</React.Fragment>
+			<div style={this.divStyle}>
+			</div>
 		);
 	}
 }
@@ -37,11 +38,14 @@ class TitleBar extends React.Component {
 		width: '100%',
 		paddingLeft: '10px'
 	};
+	prefixStyle = {
+		fontWeight: 'normal'
+	};
 	render () {
 		return (
 			<header style={this.style}>
 				<h2>
-					<span style={{fontWeight: 'normal'}}>
+					<span style={this.prefixStyle}>
 						{config.titlePrefix.toUpperCase ()+' '}
 					</span>
 					{config.titleSuffix.toUpperCase ()}
@@ -52,9 +56,12 @@ class TitleBar extends React.Component {
 };
 
 class AudioPlayer extends React.Component {
+	static defaultProps = {
+		reference: null
+	};
 	render () {
 		return (
-			<audio id="myAudio">
+			<audio ref={this.props.reference}>
 				<source src="27.01.18.Aligre_low.mp3"/>
 			</audio>
 		);
@@ -81,7 +88,15 @@ class DescriptionSection extends React.Component {
 					{this.title}
 				</h3>
 				<p>
-In addition to being a national railway terminal, Gare du Nord is also a massive regional MTR interchange. The recording starts at the Eurostar-reserved platforms, goes on through to the national and regional departure areas, and then continues down to the lower levels where the underground express service operates. The last part follows the interchange tunnel linking to the La Chapelle station on Metro line 2. The total distance, on foot, is close to 800m and is spent entirely underground.
+					In addition to being a national railway terminal, Gare du
+					Nord is also a massive regional MTR interchange. The
+					recording starts at the Eurostar-reserved platforms, goes on
+					through to the national and regional departure areas, and
+					then continues down to the lower levels where the
+					underground express service operates. The last part follows
+					the interchange tunnel linking to the La Chapelle station on
+					Metro line 2. The total distance, on foot, is close to 800m
+					and is spent entirely underground.
 				</p>
 			</div>
 		)
@@ -89,8 +104,9 @@ In addition to being a national railway terminal, Gare du Nord is also a massive
 }
 
 class MediaBar extends React.Component {
-	state = {
-		playing: false
+	static defaultProps = {
+		playing: false,
+		playPause: () => {}
 	};
 	style = {
 		position: 'absolute',
@@ -100,43 +116,60 @@ class MediaBar extends React.Component {
 		color: 'white',
 		cursor: 'pointer'
 	};
-	playAudio = () => {
-		const tmp = document.getElementById('myAudio');
-		tmp.play ();
-		this.setState ({playing: true});
-	}
-	pauseAudio = () => {
-		const tmp = document.getElementById('myAudio');
-		tmp.pause ();
-		this.setState ({playing: false});
-	}
 	render () {
 		return (
 			<footer>
-				<h2 style={this.style} onClick={()=>this.state.playing ? this.pauseAudio() : this.playAudio()}>{this.state.playing ? 'PAUSE' : 'PLAY'}</h2>
+				<h2 style={this.style} onClick={this.props.playPause}>
+					{this.props.playing ? 'PAUSE' : 'PLAY'}
+				</h2>
 			</footer>
 		);
 	}
 }
 
-const app = (
-	<React.Fragment>
-		<AudioPlayer/>
-		<BackgroundImage
-			src='./gare-bg.png'
-		/>
-		<TitleBar/>
-		<DescriptionSection/>
-		<MediaBar/>
-
-	</React.Fragment>
-);
+class App extends React.Component {
+	state = {
+		mainAudioPlaying: false
+	}
+	mainAudio = React.createRef ();
+	playPauseMainAudio = () => {
+		if (this.mainAudio.current) {
+			if (this.state.mainAudioPlaying) {
+				this.mainAudio.current.pause ();
+				this.setState ({mainAudioPlaying: false});
+			} else {
+				this.mainAudio.current.play ();
+				this.setState ({mainAudioPlaying: true});
+			}
+		} else {
+			console.log ("audio doesn't exist");
+		}
+	}
+	render () {
+		return (
+			<React.Fragment>
+				<AudioPlayer
+					reference={this.mainAudio}
+				/>
+				<BackgroundImage
+					src='./gare-bg.png'
+				/>
+				<TitleBar/>
+				<DescriptionSection/>
+				<MediaBar
+					playing={this.state.mainAudioPlaying}
+					playPause={this.playPauseMainAudio}
+				/>
+			</React.Fragment>
+		);
+	}
+}
 
 document.addEventListener (
 	'DOMContentLoaded',
 	() => {
 		document.title = config.titlePrefix + ' ' +config.titleSuffix;
 		document.body.style = bodyStyle;
-		ReactDOM.render (app, document.getElementById('app'));
+		ReactDOM.render (<App/>, document.getElementById ('app'));
 	}
 );
