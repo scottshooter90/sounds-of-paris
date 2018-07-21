@@ -1,0 +1,28 @@
+{
+  "name": "Sounds of Paris",
+  "version": "0.1.0",
+  "description": "Audio landmarks from the City of Lights",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottshooter90/soundsofparis.git"
+  },
+  "author": "Arthur Gilly & Scott Shooter",
+  "bugs": {
+    "url": "https://github.com/scottshooter90/soundsofparis/issues"
+  },
+  "homepage": "https://github.com/scottshooter90/soundsofparis#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "webpack": "^4.16.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.0"
+  }
+}
