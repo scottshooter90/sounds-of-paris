@@ -30,16 +30,11 @@ class BackgroundImage extends React.Component {
 
 class TitleBar extends React.Component {
 	style = {
-		//height: '50px',
 		position: 'absolute',
 		left: '0px',
 		top: '0px',
-		//backgroundColor: 'lightgrey',
-		//opacity: 0.5,
 		color: 'white',
 		width: '100%',
-		//display: 'flex',
-		//alignItems: 'center',
 		paddingLeft: '10px'
 	};
 	render () {
@@ -56,19 +51,27 @@ class TitleBar extends React.Component {
 	}
 };
 
+class AudioPlayer extends React.Component {
+	render () {
+		return (
+			<audio id="myAudio">
+				<source src="27.01.18.Aligre_low.mp3"/>
+			</audio>
+		);
+	}
+};
+
 class DescriptionSection extends React.Component {
 	title = 'Gare Du Nord';
 	style = {
 		position: 'absolute',
 		top: '80px',
 		bottom: '80px',
-		//backgroundColor: 'lightgrey',
-		//opacity: 0.5,
 		color: 'white',
 		fontWeight: 'lighter',
 		padding: '10px',
-		marginLeft: '80px',
-		marginRight: '80px',
+		marginLeft: '20px',
+		marginRight: '20px',
 		overflow: 'scroll'
 	}
 	render () {
@@ -86,23 +89,31 @@ In addition to being a national railway terminal, Gare du Nord is also a massive
 }
 
 class MediaBar extends React.Component {
+	state = {
+		playing: false
+	};
 	style = {
 		position: 'absolute',
 		bottom: '0px',
 		left: '0px',
-		//height: '80px',
-		width: '100%',
-		//opacity: 0.5,
-		display: 'flex',
-		alignItems: 'center',
 		paddingLeft: '10px',
-		//backgroundColor: 'lightgrey',
-		color: 'white'
+		color: 'white',
+		cursor: 'pointer'
 	};
+	playAudio = () => {
+		const tmp = document.getElementById('myAudio');
+		tmp.play ();
+		this.setState ({playing: true});
+	}
+	pauseAudio = () => {
+		const tmp = document.getElementById('myAudio');
+		tmp.pause ();
+		this.setState ({playing: false});
+	}
 	render () {
 		return (
-			<footer style={this.style}>
-				<h2>PLAY</h2>
+			<footer>
+				<h2 style={this.style} onClick={()=>this.state.playing ? this.pauseAudio() : this.playAudio()}>{this.state.playing ? 'PAUSE' : 'PLAY'}</h2>
 			</footer>
 		);
 	}
@@ -110,12 +121,14 @@ class MediaBar extends React.Component {
 
 const app = (
 	<React.Fragment>
+		<AudioPlayer/>
 		<BackgroundImage
-			src='./intro-bg.jpg'
+			src='./gare-bg.png'
 		/>
 		<TitleBar/>
 		<DescriptionSection/>
 		<MediaBar/>
+
 	</React.Fragment>
 );
 
