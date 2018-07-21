@@ -80,7 +80,7 @@ class DescriptionSection extends React.Component {
 		padding: '10px',
 		marginLeft: '20px',
 		marginRight: '20px',
-		overflow: 'scroll'
+		overflow: 'auto'
 	}
 	render () {
 		return (
