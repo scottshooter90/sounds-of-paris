@@ -36,7 +36,8 @@ class TitleBar extends React.Component {
 		top: '0px',
 		color: 'white',
 		width: '100%',
-		paddingLeft: '10px'
+		paddingLeft: '10px',
+		userSelect: 'none'
 	};
 	prefixStyle = {
 		fontWeight: 'normal'
@@ -114,7 +115,8 @@ class MediaBar extends React.Component {
 		left: '0px',
 		paddingLeft: '10px',
 		color: 'white',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		userSelect: 'none'
 	};
 	render () {
 		return (
