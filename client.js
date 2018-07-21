@@ -9,6 +9,24 @@ const bodyStyle = `
 	font-family: sans-serif
 `;
 
+class BackgroundImage extends React.Component {
+	divStyle = {
+		backgroundImage: 'url("gare-bg.png")',
+		height: '100%',
+		backgroundPosition: 'center',
+		backgroundRepeat: 'no-repeat',
+		backgroundSize: 'cover'
+	}
+	render () {
+		return (
+			<React.Fragment>
+				<div style={this.divStyle}>
+				</div>
+			</React.Fragment>
+		);
+	}
+}
+
 class TitleBar extends React.Component {
 	style = {
 		height: '50px',
@@ -55,7 +73,9 @@ class MediaBar extends React.Component {
 
 const app = (
 	<React.Fragment>
+		<BackgroundImage/>
 		<TitleBar/>
+
 		<MediaBar/>
 	</React.Fragment>
 );
