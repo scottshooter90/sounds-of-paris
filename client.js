@@ -59,12 +59,13 @@ class TitleBar extends React.Component {
 
 class AudioPlayer extends React.Component {
 	static defaultProps = {
-		reference: null
+		reference: null,
+		file: ''
 	};
 	render () {
 		return (
 			<audio ref={this.props.reference}>
-				<source src={places[0].audio}/>
+				<source src={this.props.file}/>
 			</audio>
 		);
 	}
@@ -123,7 +124,8 @@ class MediaBar extends React.Component {
 
 class App extends React.Component {
 	state = {
-		mainAudioPlaying: false
+		mainAudioPlaying: false,
+		currentPlace: places[0]
 	}
 	mainAudio = React.createRef ();
 	playPauseMainAudio = () => {
@@ -144,14 +146,15 @@ class App extends React.Component {
 			<React.Fragment>
 				<AudioPlayer
 					reference={this.mainAudio}
+					file={this.state.currentPlace.audio}
 				/>
 				<BackgroundImage
-					src={places[0].image}
+					src={this.state.currentPlace.image}
 				/>
 				<TitleBar/>
 				<DescriptionSection
-					title={places[0].name}
-					description={places[0].description}
+					title={this.state.currentPlace.name}
+					description={this.state.currentPlace.description}
 				/>
 				<MediaBar
 					playing={this.state.mainAudioPlaying}
