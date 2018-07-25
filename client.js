@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import places from './places.json';
 
 const config = {
 	'titlePrefix': 'Sounds of',
@@ -63,14 +64,13 @@ class AudioPlayer extends React.Component {
 	render () {
 		return (
 			<audio ref={this.props.reference}>
-				<source src="27.01.18.Aligre_low.mp3"/>
+				<source src={places[0].audio}/>
 			</audio>
 		);
 	}
 };
 
 class DescriptionSection extends React.Component {
-	title = 'Gare Du Nord';
 	style = {
 		position: 'absolute',
 		top: '80px',
@@ -86,18 +86,10 @@ class DescriptionSection extends React.Component {
 		return (
 			<div style={this.style}>
 				<h3>
-					{this.title}
+					{this.props.title}
 				</h3>
 				<p>
-					In addition to being a national railway terminal, Gare du
-					Nord is also a massive regional MTR interchange. The
-					recording starts at the Eurostar-reserved platforms, goes on
-					through to the national and regional departure areas, and
-					then continues down to the lower levels where the
-					underground express service operates. The last part follows
-					the interchange tunnel linking to the La Chapelle station on
-					Metro line 2. The total distance, on foot, is close to 800m
-					and is spent entirely underground.
+					{this.props.description}
 				</p>
 			</div>
 		)
@@ -154,10 +146,13 @@ class App extends React.Component {
 					reference={this.mainAudio}
 				/>
 				<BackgroundImage
-					src='./gare-bg.png'
+					src={places[0].image}
 				/>
 				<TitleBar/>
-				<DescriptionSection/>
+				<DescriptionSection
+					title={places[0].name}
+					description={places[0].description}
+				/>
 				<MediaBar
 					playing={this.state.mainAudioPlaying}
 					playPause={this.playPauseMainAudio}
