@@ -8,7 +8,8 @@ const config = {
 };
 
 const bodyStyle = `
-	font-family: Lora, "Helvetica Neue", Helvetica, Arial, sans-serif
+	font-family: Lora, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 1.5
 `;
 
 class BackgroundImage extends React.Component {
@@ -16,7 +17,6 @@ class BackgroundImage extends React.Component {
 		src: ''
 	};
 	divStyle = {
-		backgroundImage: 'url("'+this.props.src+'")',
 		height: '100%',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
@@ -24,7 +24,7 @@ class BackgroundImage extends React.Component {
 	}
 	render () {
 		return (
-			<div style={this.divStyle}>
+			<div style={Object.assign ({}, this.divStyle, {backgroundImage: 'url("'+this.props.src+'")'})}>
 			</div>
 		);
 	}
@@ -96,7 +96,30 @@ class DescriptionSection extends React.Component {
 		)
 	}
 }
-
+class SkipButton extends React.Component {
+	static defaultProps = {
+		skip: () => {}
+	};
+	style = {
+		position: 'absolute',
+		bottom: '0px',
+		left: '100px',
+		paddingLeft: '10px',
+		color: 'white',
+		cursor: 'pointer',
+		userSelect: 'none',
+		textAlign: 'right'
+	};
+	render () {
+		return (
+			<footer style={this.style}>
+				<h2 onClick={this.props.skip}>
+					SKIP
+				</h2>
+			</footer>
+		);
+	}
+}
 class MediaBar extends React.Component {
 	static defaultProps = {
 		playing: false,
@@ -125,9 +148,16 @@ class MediaBar extends React.Component {
 class App extends React.Component {
 	state = {
 		mainAudioPlaying: false,
-		currentPlace: places[0]
+		currentPlaceIndex: 0
 	}
 	mainAudio = React.createRef ();
+	skipMainAudio = () => {
+		if (this.state.currentPlaceIndex == places.length - 1) {
+			this.setState ({currentPlaceIndex: 0})
+		} else {
+			this.setState ({currentPlaceIndex: this.state.currentPlaceIndex + 1})
+		}
+	}
 	playPauseMainAudio = () => {
 		if (this.mainAudio.current) {
 			if (this.state.mainAudioPlaying) {
@@ -146,19 +176,22 @@ class App extends React.Component {
 			<React.Fragment>
 				<AudioPlayer
 					reference={this.mainAudio}
-					file={this.state.currentPlace.audio}
+					file={places[this.state.currentPlaceIndex].audio}
 				/>
 				<BackgroundImage
-					src={this.state.currentPlace.image}
+					src={places[this.state.currentPlaceIndex].image}
 				/>
 				<TitleBar/>
 				<DescriptionSection
-					title={this.state.currentPlace.name}
-					description={this.state.currentPlace.description}
+					title={places[this.state.currentPlaceIndex].name}
+					description={places[this.state.currentPlaceIndex].description}
 				/>
 				<MediaBar
 					playing={this.state.mainAudioPlaying}
 					playPause={this.playPauseMainAudio}
+				/>
+				<SkipButton
+					skip={this.skipMainAudio}
 				/>
 			</React.Fragment>
 		);
