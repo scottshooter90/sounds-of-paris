@@ -62,7 +62,13 @@ class AudioPlayer extends React.Component {
 		reference: null,
 		file: ''
 	};
+	shouldComponentUpdate (nextProps) {
+	    return (this.props.file !== nextProps.file);
+	}
 	render () {
+		if (this.props.reference.current) {
+			this.props.reference.current.load ();
+		}
 		return (
 			<audio ref={this.props.reference}>
 				<source src={this.props.file}/>
