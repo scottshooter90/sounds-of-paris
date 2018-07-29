@@ -59,11 +59,17 @@ class TitleBar extends React.Component {
 
 class AudioPlayer extends React.Component {
 	static defaultProps = {
+		playing: false,
 		reference: null,
 		file: ''
 	};
 	shouldComponentUpdate (nextProps) {
 	    return (this.props.file !== nextProps.file);
+	}
+	componentDidUpdate () {
+		if (this.props.playing) {
+			this.props.reference.current.play ();
+		}
 	}
 	render () {
 		if (this.props.reference.current) {
@@ -181,6 +187,7 @@ class App extends React.Component {
 		return (
 			<React.Fragment>
 				<AudioPlayer
+					playing={this.state.mainAudioPlaying}
 					reference={this.mainAudio}
 					file={places[this.state.currentPlaceIndex].audio}
 				/>
