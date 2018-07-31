@@ -95,6 +95,9 @@ class DescriptionSection extends React.Component {
 		marginRight: '20px',
 		overflow: 'auto'
 	}
+	shouldComponentUpdate (nextProps) {
+		return nextProps.description !== this.props.description || nextProps.title !== this.props.title
+	}
 	render () {
 		return (
 			<div style={this.style}>
@@ -108,6 +111,7 @@ class DescriptionSection extends React.Component {
 		)
 	}
 }
+
 class SkipButton extends React.Component {
 	static defaultProps = {
 		skip: () => {}
@@ -122,16 +126,20 @@ class SkipButton extends React.Component {
 		userSelect: 'none',
 		textAlign: 'right'
 	};
+	shouldComponentUpdate () {
+		return false
+	}
 	render () {
 		return (
 			<footer style={this.style}>
 				<h2 onClick={this.props.skip}>
-					SKIP
+					NEXT
 				</h2>
 			</footer>
 		);
 	}
 }
+
 class MediaBar extends React.Component {
 	static defaultProps = {
 		playing: false,
@@ -146,6 +154,9 @@ class MediaBar extends React.Component {
 		cursor: 'pointer',
 		userSelect: 'none'
 	};
+	shouldComponentUpdate (nextProps) {
+		return nextProps.playing !== this.props.playing
+	}
 	render () {
 		return (
 			<footer>
@@ -214,7 +225,7 @@ class App extends React.Component {
 document.addEventListener (
 	'DOMContentLoaded',
 	() => {
-		document.title = config.titlePrefix + ' ' +config.titleSuffix;
+		document.title = config.titlePrefix+' '+config.titleSuffix;
 		document.body.style = bodyStyle;
 		ReactDOM.render (<App/>, document.getElementById ('app'));
 	}
