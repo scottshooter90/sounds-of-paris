@@ -1,14 +1,14 @@
 [
 	{
 		"name": "Aligre",
-		"audio": "27.01.18.Aligre_low.mp3",
+		"audio": "../sounds/27.01.18.Aligre_low.mp3",
 		"description": "Located between Bastille and Nation in a heavily gentrified neighbourhood, Aligre is one of Paris' tamer open markets.",
-		"image": "market-bg.jpg"
+		"image": "../images/market-bg.jpg"
 	},
 	{
 		"name": "Gare Du Nord",
-		"audio": "24.01.18.garedunord_low.mp3",
+		"audio": "../sounds/24.01.18.garedunord_low.mp3",
 		"description": "In addition to being a national railway terminal, Gare du Nord is also a massive regional MTR interchange. The recording starts at the Eurostar-reserved platforms, goes on through to the national and regional departure areas, and then continues down to the lower levels where the underground express service operates. The last part follows the interchange tunnel linking to the La Chapelle station on Metro line 2. The total distance, on foot, is close to 800m and is spent entirely underground.",
-		"image": "gare-bg.png"
+		"image": "../images/gare-bg.png"
 	}
 ]
