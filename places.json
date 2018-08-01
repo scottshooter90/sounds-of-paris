@@ -6,9 +6,69 @@
 		"image": "../images/market-bg.jpg"
 	},
 	{
+		"name": "Gare d'Austerlitz - Paris-Cahors 17h37",
+		"audio": "../sounds/25.01.18.austerlitz_low.mp3",
+		"description": "The bulk of this recording features ambient sounds around the Austerlitz train station. The middle part captures passengers boarding for a Paris-Cahors train on platform 2. Although this sound is not endangered, the station was under extensive refurbishment at the time of the recording, which will likely cause the soundscape to change quite a bit in the future.",
+		"image": "../images/gare-bg.png"
+	},
+	{
+		"name": "Le P'tit Bistrot",
+		"audio": "../sounds/26.01.18.PtitBistrot_low.mp3",
+		"description": "A smaller establishment near Tour Saint-Jacques.",
+		"image": "../images/cafe-bg.png"
+	},
+	{
+		"name": "Les Deux Palais",
+		"audio": "../sounds/29.01.18.2palais_low.mp3",
+		"description": "The Deux Palais café is located in the middle of the Ile de la Cité. Being just footsteps away from both the Préfecture de Police and the Palais de Justice, it is a lunchtime favourite for busy public officials.",
+		"image": "../images/cafe-bg.png"
+	},
+	{
+		"name": "Châtelet - Saint-Eustache",
+		"audio": "../sounds/Halles_low.mp3",
+		"description": "Having been described as both the centre and the belly of Paris, the Halles-Saint-Eustache quarter and its successive renovations have been divisive among locals. It serves both a meeting point, a shopping mall, and a place of transit. It is also home to Europe's largest underground metro interchange, connecting eight metro and regional lines over 4 levels.",
+		"image": "../images/forum-bg.png"
+	},
+	{
+		"name": "Ⓜ10 (Gare d'Austerlitz - Boulogne)",
+		"audio": "../sounds/25.01.18.Ligne10_low.mp3",
+		"description": "Line 10 is one of the few lines whose route almost never leaves Rive Gauche, the left bank of the Seine. It is a quiet East-West line that mostly links residential or upscale neigbourhoods. It is one of the few remaining lines that still uses MP-67 coaches (1967), which RATP has been phasing out since 2008. Of particular architectural interest is the beautiful Mirabeau station, where one of the platforms is raised 2 meters above the other.",
+		"image": "../images/metro-bg.jpg"
+	},
+	{
+		"name": "Ⓜ11 (Châtelet - Mairie des Lilas)",
+		"audio": "../sounds/29.01.18.Ligne11_low.mp3",
+		"description": "Metro Line 11 links the city centre with République, Belleville and the north-eastern suburb of Les Lilas. It is the last of the metro lines to feature the MP-59, the oldest model of tyre wheel coaches (1959). Despite its age, it has the highest cruise speed among all of Paris' locomotives. As part of a massive overhaul of the Parisian metro, the MP-59 is scheduled to be decomissioned in the coming years.",
+		"image": "../images/metro-bg.jpg"
+	},
+	{
+		"name": "Ⓜ13 (Duroc - Porte de Saint-Ouen)",
+		"audio": "../sounds/25.01.18.Ligne13_low.mp3",
+		"description": "Line 13 links the Saint-Denis suburb (one of Paris' supposed \"no-go zones\") in the North with Montrouge in the South, through the upscale 7th arrondissement. It is one of the most commonly hated lines along with 12 due to frequent overcrowding and technical issues. In the recording you can clearly make out stops that are equipped with external platform doors.",
+		"image": "../images/metro-bg.jpg"
+	},
+	{
+		"name": "Orangerie, Jardin du Luxembourg",
+		"audio": "../sounds/29.01.18.Luco_low.mp3",
+		"description": "Located in the hear of the Latin Quarter, the Luxembourg is sometimes referred to as \"le Luco\" by local residents. This recording was made close to the Orangerie, a quieter edge of the park notable for its covered chess table area.",
+		"image": "../images/forum-bg.png"
+	},
+	{
+		"name": "Bird Market, Quai de la Megisserie",
+		"audio": "../sounds/27.01.18.Quai_de_la_Megisserie_low.mp3",
+		"description": "The Bird Market at Quai de la Megisserie has been an institution of Parisian life for over 200 years. Every Sunday, passers by can listen to, pet and buy exotic and farm bird species. Like many markets, it is now being threatened by decreasing public interest and aesthetic sanitation from the Mayor's office.",
+		"image": "../images/market-bg.jpg"
+	},
+	{
 		"name": "Gare Du Nord",
 		"audio": "../sounds/24.01.18.garedunord_low.mp3",
 		"description": "In addition to being a national railway terminal, Gare du Nord is also a massive regional MTR interchange. The recording starts at the Eurostar-reserved platforms, goes on through to the national and regional departure areas, and then continues down to the lower levels where the underground express service operates. The last part follows the interchange tunnel linking to the La Chapelle station on Metro line 2. The total distance, on foot, is close to 800m and is spent entirely underground.",
 		"image": "../images/gare-bg.png"
+	},
+	{
+		"name": "Place Saint-Michel",
+		"audio": "../sounds/29.01.18.StMichel_low.mp3",
+		"description": "A popular tourist spot, the Saint-Michel square is also a common rendezvous point for Parisians and a busy intersection.",
+		"image": "../images/forum-bg.png"
 	}
 ]
