@@ -6,7 +6,7 @@ module.exports = {
 		path.join (__dirname, "client.js")
 	],
 	output: {
-		"path": __dirname,
+		"path": path.join (__dirname, "static/"),
 		"filename": "index.js"
 	},
 	devtool: 'source-map',
