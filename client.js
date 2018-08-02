@@ -112,58 +112,25 @@ class DescriptionSection extends React.Component {
 	}
 }
 
-class SkipButton extends React.Component {
+class BasicButton extends React.Component {
 	static defaultProps = {
-		skip: () => {}
+		onClick: () => {},
+		width: 'auto',
+		children: 'SUBMIT'
 	};
 	style = {
-		position: 'absolute',
-		bottom: '0px',
-		left: '100px',
-		paddingLeft: '10px',
 		color: 'white',
 		cursor: 'pointer',
 		userSelect: 'none',
-		textAlign: 'right'
+		display: 'inline-block',
+		width: this.props.width,
+		margin: '10px'
 	};
-	shouldComponentUpdate () {
-		return false
-	}
 	render () {
 		return (
-			<footer style={this.style}>
-				<h2 onClick={this.props.skip}>
-					NEXT
-				</h2>
-			</footer>
-		);
-	}
-}
-
-class MediaBar extends React.Component {
-	static defaultProps = {
-		playing: false,
-		playPause: () => {}
-	};
-	style = {
-		position: 'absolute',
-		bottom: '0px',
-		left: '0px',
-		paddingLeft: '10px',
-		color: 'white',
-		cursor: 'pointer',
-		userSelect: 'none'
-	};
-	shouldComponentUpdate (nextProps) {
-		return nextProps.playing !== this.props.playing
-	}
-	render () {
-		return (
-			<footer>
-				<h2 style={this.style} onClick={this.props.playPause}>
-					{this.props.playing ? 'PAUSE' : 'PLAY'}
-				</h2>
-			</footer>
+			<h2 style={this.style} onClick={this.props.onClick}>
+				{this.props.children}
+			</h2>
 		);
 	}
 }
@@ -210,13 +177,19 @@ class App extends React.Component {
 					title={places[this.state.currentPlaceIndex].name}
 					description={places[this.state.currentPlaceIndex].description}
 				/>
-				<MediaBar
-					playing={this.state.mainAudioPlaying}
-					playPause={this.playPauseMainAudio}
-				/>
-				<SkipButton
-					skip={this.skipMainAudio}
-				/>
+				<footer style={{position: 'absolute', bottom: '0px', left: '0px'}}>
+					<BasicButton
+						onClick={this.playPauseMainAudio}
+						width="80px"
+					>
+						{this.state.mainAudioPlaying ? 'PAUSE' : 'PLAY'}
+					</BasicButton>
+					<BasicButton
+						onClick={this.skipMainAudio}
+					>
+						SKIP
+					</BasicButton>
+				</footer>
 			</React.Fragment>
 		);
 	}
