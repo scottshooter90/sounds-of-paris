@@ -143,17 +143,17 @@ class App extends React.Component {
 	}
 	componentDidMount () {
 		for (var index in places) {
-			if (!this.state.images.hasOwnProperty ('https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg')) {
+			if (!this.state.images.hasOwnProperty (places[index].image)) {
 				this.setState ({images: Object.assign (
 					{},
 					this.state.images,
-					{'https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg': {fetching: true, fetched: false, image: null}}
+					{[places[index].image]: {fetching: true, fetched: false, image: null}}
 				)});
-				fetch ('https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg', {mode: 'no-cors'})
+				fetch (places[index].image, {mode: 'no-cors'})
 					.then (response => this.setState ({images: Object.assign (
 						{},
 						this.state.images,
-						{'https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg': {fetching: false, fetched: true, image: response}}
+						{[places[index].image]: {fetching: false, fetched: true, image: response}}
 					)}));
 			}
 		}
@@ -180,7 +180,6 @@ class App extends React.Component {
 		}
 	}
 	render () {
-		console.log (this.state);
 		return (
 			<React.Fragment>
 				<AudioPlayer
@@ -189,7 +188,7 @@ class App extends React.Component {
 					file={places[this.state.currentPlaceIndex].audio}
 				/>
 				<BackgroundImage
-					src={places[this.state.currentPlaceIndex].image}
+					src={this.state.images.hasOwnProperty(places[this.state.currentPlaceIndex].image) ? this.state.images[places[this.state.currentPlaceIndex].image].image : 'loading'}
 				/>
 				<TitleBar/>
 				<DescriptionSection
