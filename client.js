@@ -138,7 +138,25 @@ class BasicButton extends React.Component {
 class App extends React.Component {
 	state = {
 		mainAudioPlaying: false,
-		currentPlaceIndex: 0
+		currentPlaceIndex: 0,
+		images: {}
+	}
+	componentDidMount () {
+		for (var index in places) {
+			if (!this.state.images.hasOwnProperty ('https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg')) {
+				this.setState ({images: Object.assign (
+					{},
+					this.state.images,
+					{'https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg': {fetching: true, fetched: false, image: null}}
+				)});
+				fetch ('https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg', {mode: 'no-cors'})
+					.then (response => this.setState ({images: Object.assign (
+						{},
+						this.state.images,
+						{'https://scottshooter90.github.io/sounds-of-paris/images/market-bg.jpg': {fetching: false, fetched: true, image: response}}
+					)}));
+			}
+		}
 	}
 	mainAudio = React.createRef ();
 	skipMainAudio = () => {
@@ -162,6 +180,7 @@ class App extends React.Component {
 		}
 	}
 	render () {
+		console.log (this.state);
 		return (
 			<React.Fragment>
 				<AudioPlayer
