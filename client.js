@@ -138,7 +138,25 @@ class BasicButton extends React.Component {
 class App extends React.Component {
 	state = {
 		mainAudioPlaying: false,
-		currentPlaceIndex: 0
+		currentPlaceIndex: 0,
+		images: {}
+	}
+	componentDidMount () {
+		for (var index in places) {
+			if (!this.state.images.hasOwnProperty (places[index].image)) {
+				this.setState ({images: Object.assign (
+					{},
+					this.state.images,
+					{[places[index].image]: {fetching: true, fetched: false, image: null}}
+				)});
+				fetch (places[index].image, {mode: 'no-cors'})
+					.then (response => this.setState ({images: Object.assign (
+						{},
+						this.state.images,
+						{[places[index].image]: {fetching: false, fetched: true, image: response}}
+					)}));
+			}
+		}
 	}
 	mainAudio = React.createRef ();
 	skipMainAudio = () => {
@@ -169,9 +187,10 @@ class App extends React.Component {
 					reference={this.mainAudio}
 					file={places[this.state.currentPlaceIndex].audio}
 				/>
+				{this.state.images.hasOwnProperty(places[this.state.currentPlaceIndex].image) && this.state.images[places[this.state.currentPlaceIndex].image].loaded ?
 				<BackgroundImage
-					src={places[this.state.currentPlaceIndex].image}
-				/>
+					src={this.state.images[places[this.state.currentPlaceIndex].image].image}
+				/> :  'loading'}
 				<TitleBar/>
 				<DescriptionSection
 					title={places[this.state.currentPlaceIndex].name}
