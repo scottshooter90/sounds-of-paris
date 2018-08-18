@@ -187,9 +187,10 @@ class App extends React.Component {
 					reference={this.mainAudio}
 					file={places[this.state.currentPlaceIndex].audio}
 				/>
+				{this.state.images.hasOwnProperty(places[this.state.currentPlaceIndex].image) && this.state.images[places[this.state.currentPlaceIndex].image].loaded ?
 				<BackgroundImage
-					src={this.state.images.hasOwnProperty(places[this.state.currentPlaceIndex].image) ? this.state.images[places[this.state.currentPlaceIndex].image].image : 'loading'}
-				/>
+					src={this.state.images[places[this.state.currentPlaceIndex].image].image}
+				/> :  'loading'}
 				<TitleBar/>
 				<DescriptionSection
 					title={places[this.state.currentPlaceIndex].name}
