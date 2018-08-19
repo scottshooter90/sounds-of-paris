@@ -135,15 +135,21 @@ class BasicButton extends React.Component {
 	}
 }
 
+const preloadImage = (imageUrl, onLoad, onError) => {
+	var imageObj = new Image ();
+	imageObj.onLoad = onLoad;
+	imageObj.onError = onError;
+	imageObj.src = imageUrl;
+	return imageObj;
+}
+
 class App extends React.Component {
 	constructor (props) {
 		super (props);
 		this.images = [];
-		for (var index in places) {
-			var currentImageUrl = places[index].image;
-			var imageObj = new Image ();
-			imageObj.src = currentImageUrl;
-			this.images.push (imageObj);
+		for (let index in places) {
+			let currentImageUrl = places[index].image;
+			window.addEventListener ('load', () => this.images.push (preloadImage (currentImageUrl)));
 		}
 		this.state = {
 			mainAudioPlaying: false,
@@ -151,6 +157,7 @@ class App extends React.Component {
 		}
 	}
 	mainAudio = React.createRef ();
+
 	skipMainAudio = () => {
 		if (this.state.currentPlaceIndex == places.length - 1) {
 			this.setState ({currentPlaceIndex: 0})
@@ -173,6 +180,7 @@ class App extends React.Component {
 	}
 	render () {
 		var currentImage = places[this.state.currentPlaceIndex].image;
+		console.log (this.images);
 		return (
 			<React.Fragment>
 				<AudioPlayer
