@@ -136,26 +136,18 @@ class BasicButton extends React.Component {
 }
 
 class App extends React.Component {
-	state = {
-		mainAudioPlaying: false,
-		currentPlaceIndex: 0,
-		images: {}
-	}
-	componentDidMount () {
+	constructor (props) {
+		super (props);
+		this.images = [];
 		for (var index in places) {
-			if (!this.state.images.hasOwnProperty (places[index].image)) {
-				this.setState ({images: Object.assign (
-					{},
-					this.state.images,
-					{[places[index].image]: {fetching: true, fetched: false, image: null}}
-				)});
-				fetch (places[index].image, {mode: 'no-cors'})
-					.then (response => this.setState ({images: Object.assign (
-						{},
-						this.state.images,
-						{[places[index].image]: {fetching: false, fetched: true, image: response}}
-					)}));
-			}
+			var currentImageUrl = places[index].image;
+			var imageObj = new Image ();
+			imageObj.src = currentImageUrl;
+			this.images.push (imageObj);
+		}
+		this.state = {
+			mainAudioPlaying: false,
+			currentPlaceIndex: 0
 		}
 	}
 	mainAudio = React.createRef ();
@@ -180,6 +172,7 @@ class App extends React.Component {
 		}
 	}
 	render () {
+		var currentImage = places[this.state.currentPlaceIndex].image;
 		return (
 			<React.Fragment>
 				<AudioPlayer
@@ -187,10 +180,9 @@ class App extends React.Component {
 					reference={this.mainAudio}
 					file={places[this.state.currentPlaceIndex].audio}
 				/>
-				{this.state.images.hasOwnProperty(places[this.state.currentPlaceIndex].image) && this.state.images[places[this.state.currentPlaceIndex].image].fetched ?
 				<BackgroundImage
-					src={this.state.images[places[this.state.currentPlaceIndex].image].image}
-				/> :  'loading'}
+					src={currentImage}
+				/>
 				<TitleBar/>
 				<DescriptionSection
 					title={places[this.state.currentPlaceIndex].name}
