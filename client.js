@@ -180,7 +180,6 @@ class App extends React.Component {
 	}
 	render () {
 		var currentImage = places[this.state.currentPlaceIndex].image;
-		console.log (this.images);
 		return (
 			<React.Fragment>
 				<AudioPlayer
