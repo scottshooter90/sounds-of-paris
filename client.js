@@ -7,11 +7,6 @@ const config = {
 	'titleSuffix': 'Paris'
 };
 
-const bodyStyle = `
-	font-family: Lora, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	line-height: 1.5
-`;
-
 class BackgroundImage extends React.Component {
 	static defaultProps = {
 		src: ''
@@ -29,33 +24,6 @@ class BackgroundImage extends React.Component {
 		);
 	}
 }
-
-class TitleBar extends React.Component {
-	style = {
-		position: 'absolute',
-		left: '0px',
-		top: '0px',
-		color: 'white',
-		width: '100%',
-		paddingLeft: '10px',
-		userSelect: 'none'
-	};
-	prefixStyle = {
-		fontWeight: 'normal'
-	};
-	render () {
-		return (
-			<header style={this.style}>
-				<h2>
-					<span style={this.prefixStyle}>
-						{config.titlePrefix.toUpperCase ()+' '}
-					</span>
-					{config.titleSuffix.toUpperCase ()}
-				</h2>
-			</header>
-		);
-	}
-};
 
 class AudioPlayer extends React.Component {
 	static defaultProps = {
@@ -144,20 +112,12 @@ const preloadImage = (imageUrl, onLoad, onError) => {
 }
 
 class App extends React.Component {
-	constructor (props) {
-		super (props);
-		this.images = [];
-		for (let index in places) {
-			let currentImageUrl = places[index].image;
-			window.addEventListener ('load', () => this.images.push (preloadImage (currentImageUrl)));
-		}
-		this.state = {
-			mainAudioPlaying: false,
-			currentPlaceIndex: 0
-		}
+	state = {
+		mainAudioPlaying: false,
+		currentPlaceIndex: 0
 	}
 	mainAudio = React.createRef ();
-
+	images = [];
 	skipMainAudio = () => {
 		if (this.state.currentPlaceIndex == places.length - 1) {
 			this.setState ({currentPlaceIndex: 0})
@@ -178,9 +138,13 @@ class App extends React.Component {
 			console.log ("audio doesn't exist");
 		}
 	}
+
+	componentDidMount () {
+		window.addEventListener ('load', () => this.images = places.map (place => preloadImage (place.image)));
+	}
+
 	render () {
 		var currentImage = places[this.state.currentPlaceIndex].image;
-		console.log (this.images);
 		return (
 			<React.Fragment>
 				<AudioPlayer
@@ -191,7 +155,6 @@ class App extends React.Component {
 				<BackgroundImage
 					src={currentImage}
 				/>
-				<TitleBar/>
 				<DescriptionSection
 					title={places[this.state.currentPlaceIndex].name}
 					description={places[this.state.currentPlaceIndex].description}
@@ -214,11 +177,12 @@ class App extends React.Component {
 	}
 }
 
+//document.addEventListener (
+//	'DOMContentLoaded',
+//	() => ReactDOM.render (<App/>, document.getElementById ('app'))
+//);
+
 document.addEventListener (
 	'DOMContentLoaded',
-	() => {
-		document.title = config.titlePrefix+' '+config.titleSuffix;
-		document.body.style = bodyStyle;
-		ReactDOM.render (<App/>, document.getElementById ('app'));
-	}
+	() => document.getElementById ('go').addEventListener ('click', () => ReactDOM.render (<App/>, document.getElementById ('app')))
 );
