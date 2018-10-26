@@ -7,9 +7,10 @@ module.exports = {
 	],
 	output: {
 		"path": path.join (__dirname, "docs/"),
-		"filename": "index.js"
+		"filename": "index-client.js"
 	},
 	devtool: 'source-map',
+	target: 'node',
 	module: {
 		rules: [
 			{
