@@ -1,3 +1,41 @@
 body {
-	margin: 0px
+	margin: 0px;
+	font-family: Lora, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	background-color: grey;
+	background-image: url('https://scottshooter90.github.io/sounds-of-paris/images/intro-bg.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white
+}
+
+.titleBar {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	padding-left: 10px;
+	user-select: none
+}
+
+#homeDescription {
+	position: absolute;
+	top: 80px;
+	bottom: 80px;
+	font-weight: lighter;
+	padding: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	overflow: auto
+}
+
+#go {
+	display: block;
+	border: none;
+	background: none;
+	color: white;
+}
+
+#go:focus {
+	outline: none;
 }
