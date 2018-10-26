@@ -6,8 +6,8 @@ import {App} from './src.js';
 
 const index = fs.readFileSync('./docs/index.html', 'utf8');
 var app = express ();
-app.use ('/docs', express.static ('static'));
-app.get ('**', (req, res) => {
+app.use ('/static', express.static ('./docs'));
+app.get ('/*', (req, res) => {
 	const html = ReactDOMServer.renderToString (<App/>);
 	const finalHtml = index.replace('<!-- APP -->', html);
 	res.set ('Cache-Control', 'public, max-age=600, s-maxage=1200');

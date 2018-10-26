@@ -4,5 +4,6 @@ import {App} from './src.js';
 
 document.addEventListener (
 	'DOMContentLoaded',
-	() => document.getElementById ('go').addEventListener ('click', () => ReactDOM.render (<App/>, document.getElementById ('app')))
+	() => ReactDOM.render (<App/>, document.getElementById ('app'))
+	//() => document.getElementById ('go').addEventListener ('click', () => ReactDOM.render (<App/>, document.getElementById ('app')))
 );
